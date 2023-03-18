@@ -42,7 +42,7 @@ public class Rover : MonoBehaviour {
     private float maxTurnAngle = 10f;
 
     private float currentAcceleration = 0f;
-    private float currentBreakforce = 0f;
+    private float currentBrakeforce = 0f;
     private float currentTurnAngle = 0f;
 
     [SerializeField] private Joystick joystick;
@@ -54,31 +54,40 @@ public class Rover : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        // Get forward and reverse from the W and S keys
-        currentAcceleration = acceleration * Input.GetAxis("Vertical");
-        //currentAcceleration = acceleration * (joystick.JoystickDis / 100);
+        // Get forward and reverse from the joystick input
         currentAcceleration = acceleration * joystick.CalculateYInput();
 
-        // Get left and right input from the A and D keys
-        //currentTurnAngle = maxTurnAngle * Input.GetAxis("Horizontal");
+        // Get left and right from the joystick input
         currentTurnAngle = maxTurnAngle * joystick.CalculateXInput();
 
         // Check if player is hitting the brake
-        if (Input.GetKey(KeyCode.Space)) {
-            currentBreakforce = breakforce;
+        /*if (Input.GetKey(KeyCode.Space)) {
+            currentBrakeforce = breakforce;
         } else {
-            currentBreakforce = 0f;
-        }
+            currentBrakeforce = 0f;
+        }*/
 
         // Apply acceleration force to the front wheels
         frontLeft.motorTorque = currentAcceleration;
         frontRight.motorTorque = currentAcceleration;
 
+        ApplyBrakes();
+    }
+
+    public void BrakesPressed() {
+        currentBrakeforce = breakforce;
+    }
+
+    public void BrakesLetGo() {
+        currentBrakeforce = 0f;
+    }
+
+    private void ApplyBrakes() {
         // Apply breaks
-        frontLeft.brakeTorque = currentBreakforce;
-        frontRight.brakeTorque = currentBreakforce;
-        backLeft.brakeTorque = currentBreakforce;
-        backRight.brakeTorque = currentBreakforce;
+        frontLeft.brakeTorque = currentBrakeforce;
+        frontRight.brakeTorque = currentBrakeforce;
+        backLeft.brakeTorque = currentBrakeforce;
+        backRight.brakeTorque = currentBrakeforce;
 
         frontLeft.steerAngle = currentTurnAngle;
         frontRight.steerAngle = currentTurnAngle;
