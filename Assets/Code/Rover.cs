@@ -45,7 +45,7 @@ public class Rover : MonoBehaviour {
     private float currentBreakforce = 0f;
     private float currentTurnAngle = 0f;
 
-    private Joystick joystick;
+    [SerializeField] private Joystick joystick;
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.E)) {
@@ -56,9 +56,12 @@ public class Rover : MonoBehaviour {
     private void FixedUpdate() {
         // Get forward and reverse from the W and S keys
         currentAcceleration = acceleration * Input.GetAxis("Vertical");
+        //currentAcceleration = acceleration * (joystick.JoystickDis / 100);
+        currentAcceleration = acceleration * joystick.CalculateYInput();
 
         // Get left and right input from the A and D keys
-        currentTurnAngle = maxTurnAngle * Input.GetAxis("Horizontal");
+        //currentTurnAngle = maxTurnAngle * Input.GetAxis("Horizontal");
+        currentTurnAngle = maxTurnAngle * joystick.CalculateXInput();
 
         // Check if player is hitting the brake
         if (Input.GetKey(KeyCode.Space)) {

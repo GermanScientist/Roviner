@@ -217,13 +217,29 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: 
+        - m_Target: {fileID: 182803471}
+          m_TargetAssemblyTypeName: Joystick, Assembly-CSharp
+          m_MethodName: DragJoystick
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 182803471}
+          m_TargetAssemblyTypeName: Joystick, Assembly-CSharp
+          m_MethodName: LetGoOfJoystick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2071,6 +2087,7 @@ MonoBehaviour:
   frontRight: {fileID: 1524330546}
   backLeft: {fileID: 2028997042}
   backRight: {fileID: 539388977}
+  joystick: {fileID: 182803471}
 --- !u!65 &1684165997
 BoxCollider:
   m_ObjectHideFlags: 0
