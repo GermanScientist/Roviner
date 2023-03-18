@@ -7,9 +7,6 @@ public class Joystick : MonoBehaviour {
     private float maxJoystickDragDis = 100;
     private float joystickDragDis;
     private float joystickDis;
-    public float JoystickDis {
-        get { return joystickDis; }
-    }
 
     public void DragJoystick() {
         transform.position = Input.mousePosition;
@@ -22,7 +19,6 @@ public class Joystick : MonoBehaviour {
         }
 
         joystickDis = Vector2.Distance(transform.position, joystickBg.transform.position);
-        Debug.Log(joystickDis / 100);
     }
 
     public void LetGoOfJoystick() {
@@ -38,7 +34,6 @@ public class Joystick : MonoBehaviour {
     public float CalculateYInput() {
         float input = 0;
         input = (joystickBg.transform.position.y - transform.position.y) / -100;
-        Debug.Log($"input: {input}");
         return input;
     }
 }
