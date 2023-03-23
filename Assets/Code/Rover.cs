@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Rover : MonoBehaviour {
     private int minerals;
@@ -46,11 +47,10 @@ public class Rover : MonoBehaviour {
     private float currentTurnAngle = 0f;
 
     [SerializeField] private Joystick joystick;
+    [SerializeField] private EventTrigger mineButton;
 
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.E)) {
-            SearchForMinerals();
-        }
+    private void Start() {
+        mineButton.enabled = false;
     }
 
     private void FixedUpdate() {
@@ -93,17 +93,15 @@ public class Rover : MonoBehaviour {
         frontRight.steerAngle = currentTurnAngle;
     }
 
-    private void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.name == "Mineral") {
-            Debug.Log("In mining range");
-        }
+    public void MineMinerals() {
+        Debug.Log("Mining minerals");
     }
 
-    private void SearchForMinerals() {
-
+    public void DisableMining() {
+        mineButton.enabled = false;
     }
 
-    private void MineMinerals() {
-
+    public void EnableMining() {
+        mineButton.enabled = true;
     }
 }
