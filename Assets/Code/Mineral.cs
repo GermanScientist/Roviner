@@ -12,13 +12,4 @@ public class Mineral : MonoBehaviour {
     private void OnTriggerExit(Collider collision) {
         rover.DisableMining();
     }
-
-    private void GetDistanceFromPlayer() {
-
-    }
-
-    private void OnDrawGizmos() {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 2);
-    }
 }
