@@ -9008,6 +9008,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2037823846}
   m_CullTransparentMesh: 1
+--- !u!1 &2046394533
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2046394534}
+  m_Layer: 0
+  m_Name: MinerRotiationPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2046394534
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046394533}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.08, y: 4.46, z: -3.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3891952177869922399}
+  m_Father: {fileID: 543450653717827419}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2049382254
 GameObject:
   m_ObjectHideFlags: 0
@@ -9776,7 +9807,7 @@ Transform:
   m_LocalPosition: {x: -3.13, y: -0.02, z: 11.67}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
-  - {fileID: 3891952177869922399}
+  - {fileID: 2046394534}
   - {fileID: 2832406150395338808}
   - {fileID: 7773157512283233331}
   m_Father: {fileID: 0}
@@ -10040,6 +10071,7 @@ MonoBehaviour:
   backRight: {fileID: 310268429}
   joystick: {fileID: 1954258948}
   mineButton: {fileID: 1631894058}
+  minerRotationPoint: {fileID: 2046394533}
 --- !u!4 &995432270375207252
 Transform:
   m_ObjectHideFlags: 0
@@ -11016,11 +11048,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 762968855513283464}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.11655474, y: 4.5557847, z: -3.024846}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.11999996, y: 0.15999985, z: 0.07999945}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 543450653717827419}
+  m_Father: {fileID: 2046394534}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3908490834825924772

@@ -48,6 +48,8 @@ public class Rover : MonoBehaviour {
 
     [SerializeField] private Joystick joystick;
     [SerializeField] private EventTrigger mineButton;
+    [SerializeField] private GameObject minerRotationPoint;
+    private GameObject mineral;
 
     private Coroutine lastCoroutine;
 
@@ -101,9 +103,19 @@ public class Rover : MonoBehaviour {
 
     private IEnumerator MineMinerals() {
         while (!Input.GetMouseButtonUp(0)) {
+            Quaternion targetRotation = Quaternion.LookRotation(minerRotationPoint.transform.position - mineral.transform.position);
+            Debug.Log($"target rotation is {targetRotation}");
+            Debug.Log($"current rotation is {minerRotationPoint.transform.rotation}");
+
+            targetRotation.x = 0;
+            targetRotation.z = 0;
+            minerRotationPoint.transform.rotation = Quaternion.Lerp(minerRotationPoint.transform.rotation, targetRotation, 20 * Time.deltaTime);
+
+            if (minerRotationPoint.transform.rotation != targetRotation)
+                yield return null;
             minerals += 1;
             Debug.Log(minerals);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(10);
         }
     }
 
@@ -112,7 +124,8 @@ public class Rover : MonoBehaviour {
         mineButton.enabled = false;
     }
 
-    public void EnableMining() {
+    public void EnableMining(GameObject m) {
         mineButton.enabled = true;
+        mineral = m;
     }
 }
