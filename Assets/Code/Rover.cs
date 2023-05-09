@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Rover : MonoBehaviour {
     private int minerals = 0;
@@ -34,12 +35,12 @@ public class Rover : MonoBehaviour {
     [SerializeField] private WheelCollider backLeft;
     [SerializeField] private WheelCollider backRight;
 
-    private float acceleration = 2000;
+    private float acceleration = 5000;
     public float Acceleration {
         set { acceleration = value; }
     }
 
-    private float breakforce = 1700;
+    private float breakforce = 2000;
     private float maxTurnAngle = 30f;
 
     private float currentAcceleration = 0f;
@@ -92,33 +93,42 @@ public class Rover : MonoBehaviour {
 
     public void StartMining() {
         Debug.Log("Mining minerals");
+        mineButton.GetComponent<Image>().color = new Color32(150, 150, 150, 255);
         // play animation
         // wait for animation to be over
         lastCoroutine = StartCoroutine(MineMinerals());
     }
 
     public void StopMining() {
+        mineButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         StopCoroutine(lastCoroutine);
     }
 
     private IEnumerator MineMinerals() {
         while (!Input.GetMouseButtonUp(0)) {
-            Quaternion targetRotation = Quaternion.LookRotation(minerRotationPoint.transform.position - mineral.transform.position);
-            Debug.Log($"target rotation is {targetRotation}");
+            ApplyBrakes();
+
+            //find the vector pointing from our position to the target
+            //Vector3 target = mineral.transform.position;
+
+            //create the rotation we need to be in to look at the target
+            /*Quaternion targetRotation = 
+            Debug.Log($"target rotation is {targetRotation.y}");
             Debug.Log($"current rotation is {minerRotationPoint.transform.rotation}");
 
             targetRotation.x = 0;
             targetRotation.z = 0;
-            minerRotationPoint.transform.rotation = Quaternion.Lerp(minerRotationPoint.transform.rotation, targetRotation, 20 * Time.deltaTime);
+            //rotate us over time according to speed until we are in the required rotation
+            minerRotationPoint.transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5);
+            */
 
-            if (minerRotationPoint.transform.rotation != targetRotation)
-                yield return null;
+            /*if (minerRotationPoint.transform.rotation != targetRotation)
+                yield return null;*/
+            yield return new WaitForSeconds(10);
             minerals += 1;
             Debug.Log(minerals);
-            yield return new WaitForSeconds(10);
         }
     }
-
 
     public void DisableMining() {
         mineButton.enabled = false;
